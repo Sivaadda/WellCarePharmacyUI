@@ -1,6 +1,23 @@
 import AdminHeader from "./AdminHeader";
+import { useEffect, useState } from "react";
 
 function Products(){
+
+    const [products, getproducts] = useState([])
+
+    const getproductlist = () => {
+        fetch("https://localhost:7108/api/Products/GetAllProducts")
+        .then((res) => res.json())
+        .then((res) => {
+            getproducts(res)
+        })
+    }
+    
+    useEffect(() => {
+        getproductlist()
+    }, [])
+
+
     return(
         <div>
             <AdminHeader/>
@@ -43,25 +60,31 @@ function Products(){
                 <button class="btn btn-primary my-2 my-sm-3 " type="button"><span>Add</span></button>
                 </div>
             </form>
-            
-            <div className="d-inline-flex card mt-2 m-3" >
-                <div className=" my-3">
-                    <img src="https://tse3.mm.bing.net/th?id=OIP.SRwVauzO0gIcmKTmolGicgHaHa&pid=Api&P=0&h=180" alt="product " width="100" height="100"/>
+            <h2> product list</h2>
+            <div>
+            {products.map((product) => {
+                return(
+            <div className="d-inline-flex card mt-5 m-3" key={product.id} >
+                <div >
+                    <img src={product.imageUrl} alt="product " width="100" height="100"/>
                 </div> 
                 <div  className="card-body">
                     <div  className="card-title">
-                        <p className="">babyproduct</p>
+                        <p className="">{product.productName}</p>
                     </div>
                     <ul className="navbar-nav">
-                        <li className="nav-link p-0" ><b>Price:</b> $50</li>
-                        <li className="nav-link" >InStock</li>
+                        <li className="nav-link p-0" ><b>Price:</b> ${product.price}</li>
+                        <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
                         <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm">Edit</button>
                         <button type="button" className="btn btn-outline-danger btn-rounded btn-sm">Delect</button>
                     </div>
                 </div>
-            </div></div>
+            </div> 
+            )})}
+            </div>
+          </div>
     );
 }
 export default Products;

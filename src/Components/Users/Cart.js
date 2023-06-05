@@ -17,14 +17,14 @@ function Cart(){
                 </tr>
               </thead>
              <tbody>
-
+              
              </tbody>
               <tr className="justify-content-end">
               
               <td > <div></div></td>
                 <td > <div></div></td>
                 <td > <div><b>Total Cost:</b></div></td>
-                <td > <div>$456</div></td>
+                <td > <div>$</div></td>
                 <td><div><button className="btn btn-warning">CheckOut</button></div></td>
               </tr>
 
