@@ -6,64 +6,6 @@ const Login = () => {
   const[emailAddress, emailAddresschange] =useState("");
   const[passwordl, passwordlchange] =useState("");
 
-
-  const usenavigate =useNavigate();
-
-  useEffect(() =>{
-    sessionStorage.clear();
-  }, []);
-  const ProceedLoginusingAPI = (e) => {
-    e.preventDefault();
-    if (validate()) {
-        ///implentation
-        // console.log('proceed');
-        let inputobj={"username": emailAddress,
-        "password": passwordl};
-        fetch("https://localhost:7108/api/AuthUsers/Login",{
-            method:'POST',
-            headers:{'content-type':'application/json'},
-            body:JSON.stringify(inputobj)
-        }).then((res) => {
-            res.json()
-        }).then((resp) => {
-            console.log(resp);
-            localStorage.setItem("login");
-            
-          
-            if (Object.keys(resp).length === 0) {
-                toast.error('Please Enter valid username');
-             } else {
-               if (resp.password === passwordl) {
-                toast.success('Success');
-                sessionStorage.setItem('username',emailAddress);
-                sessionStorage.setItem('jwttoken',resp.jwtToken);
-              usenavigate('/Users/Home')
-                     usenavigate('/')
-                 }else{
-                     toast.error('Please Enter valid credentials');
-                 }
-             }
-        }).catch((err) => {
-            toast.error('Login Failed due to :' + err.message);
-        });
-    }
-}
-const validate = () => {
-    let result = true;
-    if (emailAddress === '' || emailAddress === null) {
-        result = false;
-        toast.warning('Please Enter Username');
-    }
-    if (passwordl === '' || passwordl === null) {
-        result = false;
-        toast.warning('Please Enter Password');
-    }
-    return result;
-}
-
-    
-    
-  
   return (
     <section className="vh-100" style={{ backgroundColor: '#fff' }}>
       <div className="container h-100">
