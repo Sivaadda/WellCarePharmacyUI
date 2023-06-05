@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Login = () => {
   const[emailAddress, emailAddresschange] =useState("");
@@ -18,7 +18,7 @@ const Login = () => {
 
                     <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
-                    <form className="mx-1 mx-md-4 " onSubmit={ProceedLoginusingAPI }>
+                    <form className="mx-1 mx-md-4 ">
 
                     
                       <div className="d-flex flex-row align-items-center mb-4">
