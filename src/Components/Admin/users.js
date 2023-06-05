@@ -2,7 +2,19 @@ import AdminHeader from "./AdminHeader";
 import { useEffect, useState } from "react";
 function Users(){
 
-    const [users, getusers] = useState([])
+    const [users, getusers] = useState([]);
+
+    const delectuser = (id) => {
+      if(window.confirm("Do you want to delect user?")){
+        fetch("https://localhost:7108/api/Users/id?id=" + id,{
+          method:"Delete"
+        }).then(() => {
+          window.location.reload();
+        }).catch((err) => {
+          console.log(err.message)
+        })
+      }
+    }
     
     useEffect(() => {
       let jwtToken =sessionStorage.getItem('token');
@@ -32,6 +44,7 @@ function Users(){
                     <th>Phone Number</th>
                     <th>Password</th>
                     <th>Registered on</th>
+                    <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,6 +74,11 @@ function Users(){
                <td>
                  <div>
                   <p>{user.registeredOn}</p>
+                 </div>
+               </td>
+               <td>
+                 <div>
+                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {delectuser(user.id)}}>Delect</button>
                  </div>
                </td>
              </tr>
