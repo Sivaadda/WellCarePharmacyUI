@@ -40,7 +40,7 @@ function Products(){
         }
       }
 
-   
+    
     
     const getproductlist = () => {
         fetch("https://localhost:7108/api/Products/GetAllProducts")
@@ -52,7 +52,7 @@ function Products(){
     
     useEffect(() => {
         getproductlist()
-      
+       
     }, [])
 
 
@@ -115,7 +115,7 @@ function Products(){
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
-                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" >Edit</button>
+                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm">Edit</button>
                         <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}>Delect</button>
                     </div>
                 </div>
