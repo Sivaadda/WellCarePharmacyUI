@@ -40,18 +40,7 @@ function Products(){
         }
       }
 
-    const editproduct = (e) => {
-        e.preventDefault();
-        fetch("https://localhost:7108/api/Products/id?id=" + id,{
-            method:"PUT",
-            headers:{"content-type" : "application/json"},
-            body:JSON.stringify(productadd)})
-            .then((res) => {
-                console.log("updated product")
-            }).catch((err) =>{
-                console.log(err.message);
-            })
-    }
+   
     
     const getproductlist = () => {
         fetch("https://localhost:7108/api/Products/GetAllProducts")
@@ -63,7 +52,7 @@ function Products(){
     
     useEffect(() => {
         getproductlist()
-        editproduct()
+      
     }, [])
 
 
@@ -126,7 +115,7 @@ function Products(){
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
-                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" onClick={() => {editproduct(product.id)}}>Edit</button>
+                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" >Edit</button>
                         <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}>Delect</button>
                     </div>
                 </div>

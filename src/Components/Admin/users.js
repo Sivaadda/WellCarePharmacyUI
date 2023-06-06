@@ -4,7 +4,7 @@ function Users(){
 
     const [users, getusers] = useState([]);
 
-    const delectuser = (id) => {
+    const deleteuser = (id) => {
       if(window.confirm("Do you want to delect user?")){
         fetch("https://localhost:7108/api/Users/id?id=" + id,{
           method:"Delete"
@@ -18,9 +18,7 @@ function Users(){
     
     useEffect(() => {
       let jwtToken =sessionStorage.getItem('token');
-        fetch("https://localhost:7108/api/Users", {headers:{
-          'Authorization': 'Value' + jwtToken
-        }})
+        fetch("https://localhost:7108/api/Users")
         .then((res) =>  res.json())
         .then((res) => {
           console.log(res)
@@ -78,7 +76,7 @@ function Users(){
                </td>
                <td>
                  <div>
-                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {delectuser(user.id)}}>Delect</button>
+                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteuser(user.id)}}>Delect</button>
                  </div>
                </td>
              </tr>

@@ -5,6 +5,19 @@ function Orders(){
 
   const [orders, getorders] = useState([])
 
+  const deleteorder = (id) => {
+    if(window.confirm("Do you want to delect order?")){
+      fetch("https://localhost:7108/api/Orders/id?id=" + id,{
+        method:"Delete"
+      }).then(() => {
+        window.location.reload();
+      }).catch((err) => {
+        console.log(err.message)
+      })
+    }
+  }
+  
+
   const getorderslist = () => {
       fetch("https://localhost:7108/api/Orders/GetAllOrders")
       .then((res) => res.json())
@@ -28,6 +41,7 @@ function Orders(){
                     <th>Product Id</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
+                    <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,7 +60,7 @@ function Orders(){
                </td>
                <td>
                  <div >
-                      <p>{order.products.map((product) => { return (<p>{product.productName}</p>)})}</p>
+                      <p>{order.products.map((product) => { return (<p key={product.id}>{product.productName}</p>)})}</p>
                  </div>
                </td>
                <td>
@@ -57,6 +71,11 @@ function Orders(){
                <td>
                  <div>
                   <p>{order.totalPrice}</p>
+                 </div>
+               </td>
+               <td>
+                 <div>
+                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delect</button>
                  </div>
                </td>
              </tr>

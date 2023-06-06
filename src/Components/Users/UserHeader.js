@@ -27,7 +27,7 @@ function UserHeader(){
                       
                     </div>
                     <div className='col-sm-0 align-self-center'>
-                    <button class="btn btn-warning my-2 my-sm-0" type="button"><Link to="/" className='nav-link text-white'><span>Logout</span></Link></button>
+                    <button className="btn btn-warning my-2 my-sm-0" type="button"><Link to="/" className='nav-link text-white'><span>Logout</span></Link></button>
                    </div>
                 </header> 
             </div>
