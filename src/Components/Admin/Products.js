@@ -1,10 +1,58 @@
 import AdminHeader from "./AdminHeader";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 function Products(){
 
     const [products, getproducts] = useState([])
+    const [productName, updatename] = useState("")
+    const [price, updateprice] = useState("")
+    const [description, updatedescription] = useState("")
+    const [imageUrl, updateimage] = useState("")
+    const [discount, updatediscount] =useState(0)
+    const [status, updatestatus] = useState("InStock")
 
+    const productadd ={productName,price,description,imageUrl,discount,status};
+    const addproduct =(e) => {
+        e.preventDefault();
+        console.log(productadd);
+
+        fetch("https://localhost:7108/api/Products/AddProduct", {
+            method:"POST",
+            headers:{"content-type" : "application/json"},
+            body:JSON.stringify(productadd)
+        }).then((e) => {
+            window.location.reload();
+            toast.success("Product is added")
+        }).catch((err) =>{
+            console.log(err.message);
+        })
+    }
+    const deleteproduct = (id) => {
+        if(window.confirm("Do you want to delect product?")){
+          fetch("https://localhost:7108/api/Products/id?id=" + id,{
+            method:"Delete"
+          }).then(() => {
+            window.location.reload();
+          }).catch((err) => {
+            console.log(err.message)
+          })
+        }
+      }
+
+    const editproduct = (e) => {
+        e.preventDefault();
+        fetch("https://localhost:7108/api/Products/id?id=" + id,{
+            method:"PUT",
+            headers:{"content-type" : "application/json"},
+            body:JSON.stringify(productadd)})
+            .then((res) => {
+                console.log("updated product")
+            }).catch((err) =>{
+                console.log(err.message);
+            })
+    }
+    
     const getproductlist = () => {
         fetch("https://localhost:7108/api/Products/GetAllProducts")
         .then((res) => res.json())
@@ -15,6 +63,7 @@ function Products(){
     
     useEffect(() => {
         getproductlist()
+        editproduct()
     }, [])
 
 
@@ -22,42 +71,42 @@ function Products(){
         <div>
             <AdminHeader/>
             <h3>Add Products</h3>
-            <form>
+            <form onSubmit={addproduct}>
                 <div className="row col-sm-12 justify-content-center">
                     <div className="col-sm-5">
                     <div className="form-outline  mb-0">
                         <label className="form-label" >Product Name</label>
-                          <input type="text" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="text" value={productName} onChange={e=>updatename(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
                     <div className="form-outline flex-fill mb-0">
                         <label className="form-label" >Price</label>
-                          <input type="decimal" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="decimal" value={price} onChange={e=>updateprice(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
                     <div className="form-outline flex-fill mb-0">
                         <label className="form-label" >Description</label>
-                          <input type="text-area" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="text-area" value={description} onChange={e=>updatedescription(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
 
                     </div>
                     <div className="col-sm-5">
                     <div className="form-outline flex-fill mb-0">
                         <label className="form-label" >Discount</label>
-                          <input type="texdecimal" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="texdecimal" value={discount} onChange={e=>updatediscount(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
                     <div className="form-outline flex-fill mb-0">
                         <label className="form-label" >Status</label>
-                          <input type="text" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="text" value={status} onChange={e=>updatestatus(e.target.value)}className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
                     <div className="form-outline flex-fill mb-0">
                         <label className="form-label" >Image Url</label>
-                          <input type="text-area" className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                          <input type="text-area" value={imageUrl} onChange={e=>updateimage(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
 
                     </div>
                     
                 </div>
                 <div>
-                <button class="btn btn-primary my-2 my-sm-3 " type="button"><span>Add</span></button>
+                <button className="btn btn-primary my-2 my-sm-3 " type="submit"><span>Add</span></button>
                 </div>
             </form>
             <h2> product list</h2>
@@ -77,8 +126,8 @@ function Products(){
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
-                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm">Edit</button>
-                        <button type="button" className="btn btn-outline-danger btn-rounded btn-sm">Delect</button>
+                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" onClick={() => {editproduct(product.id)}}>Edit</button>
+                        <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}>Delect</button>
                     </div>
                 </div>
             </div> 
