@@ -37,6 +37,7 @@ function Users(){
              <table className=" container table align-middle mb-0 bg-white  ">
               <thead className="bg-light ">
                 <tr>
+                    <th>UserId</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
@@ -49,6 +50,11 @@ function Users(){
          {users.map((user)=>{
            return(
              <tr  key={user.id}>
+              <td>
+                 <div>
+                     <p>{user.id}</p>
+                 </div>
+               </td>
                <td>
                  <div>
                      <p>{user.name}</p>

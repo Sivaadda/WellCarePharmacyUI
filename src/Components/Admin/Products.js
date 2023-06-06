@@ -108,6 +108,7 @@ function Products(){
                 </div> 
                 <div  className="card-body">
                     <div  className="card-title">
+                        <p> Id: {product.id}</p>
                         <p className="">{product.productName}</p>
                     </div>
                     <ul className="navbar-nav">

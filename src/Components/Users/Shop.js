@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
-function Shop(){
+function Shop({addToCart}){
     const [products, getproducts] = useState([])
+    
 
     const getproductlist = () => {
         fetch("https://localhost:7108/api/Products/GetAllProducts")
         .then((res) => res.json())
         .then((res) => {
             getproducts(res)
-        })
+        })  
     }
     
     useEffect(() => {
@@ -35,7 +36,8 @@ function Shop(){
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
-                        <button type="button" className="btn btn-outline-info btn-rounded btn-sm" /*onClick={() => addtocart(product)}*/>Add to Cart</button>
+                        <button type="button" className="btn btn-outline-info btn-rounded btn-sm" onClick={() => addToCart(product)}
+                          >Add to Cart</button>
                     </div>
                 </div>
             </div> 
