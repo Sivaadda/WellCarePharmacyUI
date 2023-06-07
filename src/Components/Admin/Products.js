@@ -11,21 +11,39 @@ function Products(){
     const [imageUrl, updateimage] = useState("")
     const [discount, updatediscount] =useState(0)
     const [status, updatestatus] = useState("InStock")
+    const [editProduct, setEditProduct] =useState(null)
 
     const productadd ={productName,price,description,imageUrl,discount,status};
     const addproduct =(e) => {
         e.preventDefault();
         console.log(productadd);
-
-        fetch("https://localhost:7108/api/Products/AddProduct", {
-            method:"POST",
+        const apimethod = editProduct? "PUT" :"POST";
+        const apiUrl = editProduct ? 'https://localhost:7108/api/Products/id?id='+ editProduct.id :
+        "https://localhost:7108/api/Products/AddProduct";
+        fetch(apiUrl, {
+            method:apimethod,
             headers:{"content-type" : "application/json"},
             body:JSON.stringify(productadd)
-        }).then((e) => {
-            window.location.reload();
-            toast.success("Product is added")
-        }).catch((err) =>{
+        }).then(res =>{
+          res.json()
+        })
+         .then((data) =>{
+                //window.location.reload();
+                updatename("");
+                updatedescription("");
+                updatediscount(0);
+                updateimage("");
+                updateprice("");
+                updatestatus("InStock");
+                setEditProduct(null);
+                toast.success(editProduct? "Product is updated": "Product is added");
+                getproductlist();
+            
+        })
+          .catch((err) =>{
             console.log(err.message);
+            toast.error("Failed to add/update product");
+            
         })
     }
     const deleteproduct = (id) => {
@@ -55,6 +73,15 @@ function Products(){
        
     }, [])
 
+    const handleEdit =(product) => {
+        setEditProduct(product);
+        updatename(product.productName);
+        updatedescription(product.description);
+        updatediscount(product.discount);
+        updateimage(product.imageUrl);
+        updateprice(product.price);
+        updatestatus(product.status);
+    };
 
     return(
         <div>
@@ -116,7 +143,7 @@ function Products(){
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>
-                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm">Edit</button>
+                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" onClick={() => {handleEdit(product)}}>Edit</button>
                         <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}>Delect</button>
                     </div>
                 </div>
@@ -125,5 +152,5 @@ function Products(){
             </div>
           </div>
     );
-}
+                }
 export default Products;
