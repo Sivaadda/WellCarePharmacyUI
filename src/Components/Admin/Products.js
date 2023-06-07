@@ -28,7 +28,7 @@ function Products(){
           res.json()
         })
          .then((data) =>{
-                //window.location.reload();
+                 
                 updatename("");
                 updatedescription("");
                 updatediscount(0);

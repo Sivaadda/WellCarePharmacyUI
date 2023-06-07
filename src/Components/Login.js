@@ -32,6 +32,7 @@ const Login = () => {
                sessionStorage.setItem('email',email);
                sessionStorage.setItem('token',resp.token);
                sessionStorage.setItem('roleId',resp.roleid);
+               sessionStorage.setItem('userId',resp.userid);
              if(resp.roleid === 2)
              {
               usenavigate("/Users/Home");

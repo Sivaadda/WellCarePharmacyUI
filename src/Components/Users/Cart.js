@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
+import { useNavigate } from 'react-router-dom';
 function Cart({ cartItems }){
   const getTotalCost = () => {
     return cartItems.reduce((total, cartItem) => {
       return total + cartItem.quantity * cartItem.price;
     }, 0);
   };
-  
+  const navigate = useNavigate();
   const [orderData, setOrderData] = useState({
     quantity: 0,
     totalPrice: 0,
@@ -20,13 +21,15 @@ function Cart({ cartItems }){
   });
 
   const placeOrder = () => {
-    // Create the request payload
-    const payload = {
-      quantity: orderData.quantity,
-      totalPrice: orderData.totalPrice,
-      usersId: orderData.usersId,
-      products: orderData.products
-    };
+    // Update the orderData state with the required values
+    setOrderData({
+      quantity: 23,
+      totalPrice: 345,
+      usersId: 5,
+      products: cartItems.map(cartItem => ({
+        productId: cartItem.id
+      }))
+    });
 
     // Send the POST request to the server
     fetch("https://localhost:7108/api/Orders/AddOrder", {
@@ -34,23 +37,23 @@ function Cart({ cartItems }){
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(orderData)
     })
-      .then((response) => {
-        response.json()
-        console.log(response.json)
-      })
-  
-      .then((data) => {
-        console.log("Order placed successfully:", data);
-        // Reset the order data or navigate to the order confirmation page
-      })
-      .catch((error) => {
-        console.error("Error placing the order:", error);
-      });
-  };
+    .then(response =>{ return response.json()
+    })
+    .then(data => {
+     
+      console.log("Order placed successfully:");
+      console.log(data)
+      navigate("/Admin/Products");
 
- 
+      // Reset the order data or navigate to the order confirmation page
+    })
+    .catch(error => {
+      console.log( error.message);
+    });
+  };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     return(
         <div>
           <UserHeader/>
@@ -58,6 +61,7 @@ function Cart({ cartItems }){
              <table className=" container table align-middle mb-0 bg-white  ">
               <thead className="bg-light ">
                 <tr>
+                    <th>id</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Quantity</th>
@@ -68,6 +72,11 @@ function Cart({ cartItems }){
               <tbody>
           {cartItems.map((cartItem) => (
             <tr key={cartItem.id}>
+              <td>
+                <div>
+                 <p>{cartItem.id}</p>
+                </div>
+              </td>
               <td>
                 <div>
                   <img src={cartItem.imageUrl} alt={cartItem.productName} width="80" height="80" />
@@ -95,7 +104,7 @@ function Cart({ cartItems }){
               </td>
             </tr>
           ))}
-        </tbody>
+       
               <tr className="justify-content-end">
               
               <td > <div></div></td>
@@ -104,7 +113,7 @@ function Cart({ cartItems }){
                 <td > <div>${getTotalCost}</div></td>
                 <td><div><button className="btn btn-warning" onClick={() => placeOrder()}>CheckOut</button></div></td>
               </tr>
-
+              </tbody>
              </table>   
           <Footer/>
         </div>
