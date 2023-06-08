@@ -7,13 +7,43 @@ import { useState } from 'react';
 function App() {
   const [cartItems,setCartItems] = useState([]);
 
-  const addToCart = (product) => {
-  setCartItems([...cartItems, product]);
-  }
+  const addToCart = (det) =>{
+    const MedicineExist = cartItems.find((cart)=> cart.id === det.id);
+    
+    if(MedicineExist){
+      setCartItems(cartItems.map((cart) => cart.id === det.id ?
+      {...MedicineExist , quantity:MedicineExist.quantity+1}: cart));
+    }
+      else{
+        setCartItems([...cartItems, {...det, quantity:1}])
+
+      }
+    }
+
+      const removeItem = (det) =>{
+      const MedicineExist = cartItems.find((cart)=> cart.id === det.id);
+      if(MedicineExist.quantity === 1){
+        setCartItems(cartItems.filter((cart) => cart.id === det.id ));
+   
+      }
+        else{
+          setCartItems(
+         cartItems.map((cart) => cart.id === det.id ? {...MedicineExist, quantity:MedicineExist.quantity - 1}:cart));
+      
+  
+        }
+      }
+      const delectItem = (id) =>{
+        setCartItems((item) =>{
+          return item.filter(cartItems => cartItems.id !== id)
+        })
+      }
+
+ 
   return (
     <div className="App">
     
-      <Routing addToCart={addToCart} cartItems ={cartItems}></Routing>
+      <Routing addToCart={addToCart} cartItems ={cartItems} delectItem ={delectItem} removeItem={removeItem}></Routing>
     </div>
   );
 }
