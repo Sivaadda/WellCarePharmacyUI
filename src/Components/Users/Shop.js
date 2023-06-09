@@ -1,20 +1,41 @@
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 function Shop({addToCart}){
     const [products, getproducts] = useState([])
-    
 
+                
+        let userId =sessionStorage.getItem('userId');
+    const usenavigate=useNavigate();
+    
+    let jwttoken =sessionStorage.getItem('token');
+    
     const getproductlist = () => {
-        fetch("https://localhost:7108/api/Products/GetAllProducts")
+        fetch("https://localhost:7108/api/Products/GetAllProducts", {
+            headers:{
+                'Authorization':'bearer ' + jwttoken,
+            }
+        })
         .then((res) => res.json())
         .then((res) => {
             getproducts(res)
-        })  
-    }
-    
+        }).catch((err) =>{
+       
+            console.log(err.message);
+            
+    })
+}
     useEffect(() => {
         getproductlist()
+        if(userId===''|| userId===null)
+        {
+            usenavigate("/");
+            toast.error("Failed to login");
+        }
+        
+
     }, [])
 
     return(

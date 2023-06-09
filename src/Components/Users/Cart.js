@@ -24,7 +24,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     setOrderData({
       quantity: totalQuantity,
       totalPrice: Totalprice,
-      usersId: userId ,
+      usersId:userId ,
       products: cartItems.map(cartItem => ({
         productId: cartItem.id
       }))
@@ -33,9 +33,10 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     // Send the POST request to the server
     fetch("https://localhost:7108/api/Orders/AddOrder", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       },
       body: JSON.stringify(orderData)
     })
     .then(response =>{ return response.json()
@@ -45,10 +46,6 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
       toast.success("Order is placed successfully");
       console.log("Order placed successfully:");
       console.log(data)
-      
-      
-      
-
       // Reset the order data or navigate to the order confirmation page
     })
    

@@ -60,7 +60,7 @@ function Orders(){
                </td>
                <td>
                  <div >
-                      <p>{order.products.map((product) => { return (<p key={product.id}>{product.productName}</p>)})}</p>
+                      <div>{order.products.map((product) => { return (<div key={product.id}>{product.productName}</div>)})}</div>
                  </div>
                </td>
                <td>
@@ -75,7 +75,9 @@ function Orders(){
                </td>
                <td>
                  <div>
-                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delect</button>
+                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delect</button> <span> </span>
+                 <button type="button" className="btn btn-outline-success btn-rounded btn-sm" onClick={() => {getorderslist(order.users.id)}}>User Details</button>  <span> </span>
+                 <button type="button" className="btn btn-outline-primary btn-rounded btn-sm" onClick={() => {getorderslist(order.products)}}>Product Details</button>
                  </div>
                </td>
              </tr>

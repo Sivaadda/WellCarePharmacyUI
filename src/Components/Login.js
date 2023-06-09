@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-  const[email, emailAddresschange] =useState("");
-  const[password, passwordlchange] =useState("");
+  const [email, emailAddresschange] =useState("");
+  const [password, passwordlchange] =useState("");
+
 
   const usenavigate=useNavigate();
 
   useEffect(()=>{
     sessionStorage.clear();
   },[]);
-
+ 
   const ProceedLoginusingAPI = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -35,7 +36,7 @@ const Login = () => {
                sessionStorage.setItem('userId',resp.userid);
              if(resp.roleid === 2)
              {
-              usenavigate("/Users/Home");
+               usenavigate("/Users/Home");
              }else{
               usenavigate("/Admin/Products");
              }

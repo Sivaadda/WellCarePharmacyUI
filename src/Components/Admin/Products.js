@@ -12,7 +12,7 @@ function Products(){
     const [discount, updatediscount] =useState(0)
     const [status, updatestatus] = useState("InStock")
     const [editProduct, setEditProduct] =useState(null)
-
+    let jwttoken =sessionStorage.getItem('token');
     const productadd ={productName,price,description,imageUrl,discount,status};
     const addproduct =(e) => {
         e.preventDefault();
@@ -22,7 +22,10 @@ function Products(){
         "https://localhost:7108/api/Products/AddProduct";
         fetch(apiUrl, {
             method:apimethod,
-            headers:{"content-type" : "application/json"},
+            headers:{
+              "content-type" : "application/json",
+              
+            },
             body:JSON.stringify(productadd)
         }).then(res =>{
           res.json()
@@ -61,7 +64,11 @@ function Products(){
     
     
     const getproductlist = () => {
-        fetch("https://localhost:7108/api/Products/GetAllProducts")
+       fetch("https://localhost:7108/api/Products/GetAllProducts",{
+          headers:{
+            'Authorization':'bearer ' + jwttoken,
+          }
+        })
         .then((res) => res.json())
         .then((res) => {
             getproducts(res)

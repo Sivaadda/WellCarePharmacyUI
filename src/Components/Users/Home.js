@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
+
 function Home() {
     return(
         <div>
