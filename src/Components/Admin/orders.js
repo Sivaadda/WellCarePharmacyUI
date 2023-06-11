@@ -1,9 +1,13 @@
 import AdminHeader from "./AdminHeader";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Orders(){
 
   const [orders, getorders] = useState([])
+
+  let userId =sessionStorage.getItem('userId');
+  const usenavigate =useNavigate();
 
   const deleteorder = (id) => {
     if(window.confirm("Do you want to delect order?")){
@@ -28,6 +32,10 @@ function Orders(){
   
   useEffect(() => {
       getorderslist()
+      if(userId===''|| userId===null)
+      {
+          usenavigate("/");
+      }
   }, [])
     return(
         <div>

@@ -1,6 +1,7 @@
 import AdminHeader from "./AdminHeader";
 import React, { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 function Products(){
 
@@ -13,6 +14,8 @@ function Products(){
     const [status, updatestatus] = useState("InStock")
     const [editProduct, setEditProduct] =useState(null)
     let jwttoken =sessionStorage.getItem('token');
+    let userId =sessionStorage.getItem('userId');
+    const usenavigate =useNavigate();
     const productadd ={productName,price,description,imageUrl,discount,status};
     const addproduct =(e) => {
         e.preventDefault();
@@ -77,6 +80,11 @@ function Products(){
     
     useEffect(() => {
         getproductlist()
+        if(userId===''|| userId===null)
+        {
+            usenavigate("/");
+        }
+        
        
     }, [])
 

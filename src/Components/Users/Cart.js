@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Cart({ cartItems, delectItem, removeItem , addToCart}){
   const Totalprice = cartItems.reduce((price,cart) => price+ cart.quantity * cart.price,0 );
   const userId = sessionStorage.getItem('userId');
   const totalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+
+  const usenavigate=useNavigate();
 
   const [orderData, setOrderData] = useState({
     quantity: 0,
@@ -19,12 +22,12 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     ]
   });
   
-  const placeOrder = () => {
+  const PlaceOrder = () => {
     // Update the orderData state with the required values
     setOrderData({
       quantity: totalQuantity,
       totalPrice: Totalprice,
-      usersId:userId ,
+      usersId: userId ,
       products: cartItems.map(cartItem => ({
         productId: cartItem.id
       }))
@@ -33,10 +36,9 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     // Send the POST request to the server
     fetch("https://localhost:7108/api/Orders/AddOrder", {
       method: "POST",
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(orderData)
     })
     .then(response =>{ return response.json()
@@ -44,12 +46,21 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     .then(data => {
      
       toast.success("Order is placed successfully");
-      console.log("Order placed successfully:");
       console.log(data)
       // Reset the order data or navigate to the order confirmation page
     })
    
   };
+
+  useEffect(() => {
+
+    if(userId===''|| userId===null)
+    {
+        usenavigate("/");
+    }
+    
+
+}, [])
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     return(
         <div>
@@ -109,7 +120,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
                 <td > <div></div></td>
                 <td > <div><b>Total Cost:</b></div></td>
                 <td > <div>${Totalprice}</div></td>
-                <td><div><button className="btn btn-warning" onClick={() => placeOrder()}>CheckOut</button></div></td>
+                <td><div><button className="btn btn-warning" onClick={() => PlaceOrder()}>CheckOut</button></div></td>
               </tr>
               </tbody>
              </table>   

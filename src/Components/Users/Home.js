@@ -1,7 +1,23 @@
+import { useEffect } from "react";
 import Footer from "./Footer";
 import UserHeader from "./UserHeader";
+import { useNavigate } from "react-router-dom";
+
 
 function Home() {
+  let userId =sessionStorage.getItem('userId');
+  const usenavigate=useNavigate();
+
+  useEffect(() => {
+    if(userId===''|| userId===null)
+    {
+        usenavigate("/");
+        
+    }
+    
+
+}, [])
+
     return(
         <div>
           <UserHeader/>

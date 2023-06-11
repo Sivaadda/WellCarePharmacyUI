@@ -1,9 +1,11 @@
 import AdminHeader from "./AdminHeader";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Users(){
 
     const [users, getusers] = useState([]);
-
+    const usenavigate=useNavigate();
+    const userId = sessionStorage.getItem('userId');
     const deleteuser = (id) => {
       if(window.confirm("Do you want to delect user?")){
         fetch("https://localhost:7108/api/Users/id?id=" + id,{
@@ -17,6 +19,12 @@ function Users(){
     }
     
     useEffect(() => {
+
+      if(userId===''|| userId===null)
+      {
+          usenavigate("/");
+      }
+      
       let jwtToken =sessionStorage.getItem('token');
         fetch("https://localhost:7108/api/Users")
         .then((res) =>  res.json())
@@ -26,9 +34,13 @@ function Users(){
         }).catch((error) => {
           console.log(error.message)
         });
+
+       
     },
      
    [])
+
+  
 
     return(
         <div>
