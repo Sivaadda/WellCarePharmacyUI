@@ -10,7 +10,7 @@ import Cart from "./Users/Cart.js";
 import Shop from "./Users/Shop.js";
 
 
-function Routing({addToCart, cartItems, delectItem, removeItem}){
+function Routing({addToCart,setCartItems, cartItems, delectItem, removeItem}){
     return(
         <div>
             <ToastContainer theme="colored"></ToastContainer>
@@ -24,7 +24,7 @@ function Routing({addToCart, cartItems, delectItem, removeItem}){
                 <Route path="/Admin/Users" element={<Users/>}></Route>
              
                 <Route path="/Users/Home" element={<Home/>}></Route>
-                <Route path="/Users/Cart" element={<Cart cartItems={cartItems} addToCart={addToCart} delectItem ={delectItem} removeItem={removeItem}/>}></Route>
+                <Route path="/Users/Cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} delectItem ={delectItem} removeItem={removeItem}/>}></Route>
                 <Route path="/Users/Shop" element={<Shop addToCart={addToCart}/>}></Route>
                 
                 

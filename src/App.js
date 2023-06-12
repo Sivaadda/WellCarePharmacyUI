@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import './App.css';
 import Routing from './Components/Routing';
 import React from 'react';
@@ -18,6 +19,7 @@ function App() {
         setCartItems([...cartItems, {...det, quantity:1}])
 
       }
+      toast.success("Product is added to cart")
     }
 
       const removeItem = (det) =>{
@@ -43,7 +45,7 @@ function App() {
   return (
     <div className="App">
     
-      <Routing addToCart={addToCart} cartItems ={cartItems} delectItem ={delectItem} removeItem={removeItem}></Routing>
+      <Routing addToCart={addToCart} setCartItems={setCartItems} cartItems ={cartItems} delectItem ={delectItem} removeItem={removeItem}></Routing>
     </div>
   );
 }

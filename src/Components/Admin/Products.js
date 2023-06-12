@@ -27,6 +27,7 @@ function Products(){
             method:apimethod,
             headers:{
               "content-type" : "application/json",
+              'Authorization':'bearer ' + jwttoken,
               
             },
             body:JSON.stringify(productadd)
@@ -55,9 +56,12 @@ function Products(){
     const deleteproduct = (id) => {
         if(window.confirm("Do you want to delect product?")){
           fetch("https://localhost:7108/api/Products/id?id=" + id,{
-            method:"Delete"
+            method:"Delete",
+            headers:{
+              'Authorization':'bearer ' + jwttoken,
+            }
           }).then(() => {
-            window.location.reload();
+            getproductlist();
           }).catch((err) => {
             console.log(err.message)
           })
@@ -101,7 +105,8 @@ function Products(){
     return(
         <div>
             <AdminHeader/>
-            <h3>Add Products</h3>
+            <p></p>
+            <h3>Add/Update Product</h3>
             <form onSubmit={addproduct}>
                 <div className="row col-sm-12 justify-content-center">
                     <div className="col-sm-5">
@@ -137,14 +142,14 @@ function Products(){
                     
                 </div>
                 <div>
-                <button className="btn btn-primary my-2 my-sm-3 " type="submit"><span>Add</span></button>
+                <button className="btn btn-primary my-0 my-sm-3 " type="submit"><span>Add/Update</span></button>
                 </div>
             </form>
-            <h2> product list</h2>
+            
             <div>
             {products.map((product) => {
                 return(
-            <div className="d-inline-flex card mt-5 m-3" key={product.id} >
+            <div className="d-inline-flex card mt-5 m-2" key={product.id} >
                 <div >
                     <img src={product.imageUrl} alt="product " width="100" height="100"/>
                 </div> 
@@ -154,7 +159,7 @@ function Products(){
                         <p className="">{product.productName}</p>
                     </div>
                     <ul className="navbar-nav">
-                        <li className="nav-link p-0" ><b>Price:</b> ${product.price}</li>
+                        <li className="nav-link p-0" ><b>Price:</b> Rs {product.price}</li>
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>

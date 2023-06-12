@@ -4,13 +4,14 @@ import UserHeader from "./UserHeader";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function Cart({ cartItems, delectItem, removeItem , addToCart}){
+function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
   const Totalprice = cartItems.reduce((price,cart) => price+ cart.quantity * cart.price,0 );
   const userId = sessionStorage.getItem('userId');
+  let jwttoken =sessionStorage.getItem('token');
   const totalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
 
   const usenavigate=useNavigate();
-
+  
   const [orderData, setOrderData] = useState({
     quantity: 0,
     totalPrice: 0,
@@ -37,18 +38,17 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
     fetch("https://localhost:7108/api/Orders/AddOrder", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization':'bearer ' + jwttoken,
       },
       body: JSON.stringify(orderData)
     })
     .then(response =>{ return response.json()
     })
     .then(data => {
-     
-      toast.success("Order is placed successfully");
-      console.log(data)
-      // Reset the order data or navigate to the order confirmation page
-    })
+      toast.success("Order is placed successfully");  
+      setCartItems([]);      
+      })
    
   };
 
@@ -103,7 +103,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
               </td>
               <td>
                 <div>
-                ${cartItem.quantity}*{cartItem.price}
+                Rs {cartItem.quantity}*{cartItem.price}
                 </div>
               </td>
               <td>
@@ -119,12 +119,12 @@ function Cart({ cartItems, delectItem, removeItem , addToCart}){
               <td > <div></div></td>
                 <td > <div></div></td>
                 <td > <div><b>Total Cost:</b></div></td>
-                <td > <div>${Totalprice}</div></td>
+                <td > <div>Rs {Totalprice}</div></td>
                 <td><div><button className="btn btn-warning" onClick={() => PlaceOrder()}>CheckOut</button></div></td>
               </tr>
               </tbody>
              </table>   
-          <Footer/>
+          
         </div>
       );
    }

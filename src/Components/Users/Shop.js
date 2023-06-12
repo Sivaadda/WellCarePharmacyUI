@@ -53,7 +53,7 @@ function Shop({addToCart}){
                         <p className="">{product.productName}</p>
                     </div>
                     <ul className="navbar-nav">
-                        <li className="nav-link p-0" ><b>Price:</b> ${product.price}</li>
+                        <li className="nav-link p-0" ><b>Price:</b> Rs {product.price}</li>
                         <li className="nav-link" >{product.status}</li>
                     </ul>
                     <div>

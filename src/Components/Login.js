@@ -71,7 +71,7 @@ const validate = () => {
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 text-primary ">Login</p>
 
                     <form className="mx-1 mx-md-4 " onSubmit={ProceedLoginusingAPI}>
 
@@ -99,7 +99,7 @@ const validate = () => {
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    <img src="https://img.freepik.com/premium-vector/pharmacy-medical-drugs-medicine-drugstore-healthcare-flat-vector-illustration-banner-background_128772-1931.jpg?size=626&ext=jpg&ga=GA1.2.378484170.1686548611&semt=ais"
                       className="img-fluid" alt="Sample" />
 
                   </div>

@@ -21,7 +21,7 @@ function Home() {
     return(
         <div>
           <UserHeader/>
-          <img src="https://i1.wp.com/www.quytech.com/blog/wp-content/uploads/2020/01/On-Demand-Medicine-Delivery-App-Development.jpg?resize=1024%2C487&ssl=1" alt="home screen" width="100%" height="100%"/>
+          <img src="https://img.freepik.com/free-vector/online-pharmacy-service_107791-2650.jpg?size=626&ext=jpg" alt="home screen" width={980} height={498}/>
           <Footer/>
         </div>
     );

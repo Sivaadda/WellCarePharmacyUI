@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Registration = () => {
@@ -36,7 +36,7 @@ const Registration = () => {
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 text-primary ">Sign up</p>
 
                     <form className="mx-1 mx-md-4" onSubmit={handlesubmit}>
 
@@ -67,14 +67,11 @@ const Registration = () => {
                           <input type="password" required value={password} onChange={e=>passwordChange(e.target.value)} className="form-control" />
                         </div>
                       </div>
-
                       <div className="form-check d-flex justify-content-center mb-5">
-                        <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                         <label className="form-check-label" >
-                          I agree all statements in <a href="#!">Terms of service</a>
+                          Already have an account ? <Link to='/'>Login here</Link>
                         </label>
                       </div>
-
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button type="submit" className="btn btn-primary btn-lg">Register</button>
                       </div>
@@ -84,7 +81,7 @@ const Registration = () => {
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    <img src="https://img.freepik.com/premium-vector/pharmacy-medical-drugs-medicine-drugstore-healthcare-flat-vector-illustration-banner-background_128772-1931.jpg?size=626&ext=jpg&ga=GA1.2.378484170.1686548611&semt=ais"
                       className="img-fluid" alt="Sample" />
 
                   </div>

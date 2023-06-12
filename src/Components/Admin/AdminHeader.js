@@ -12,7 +12,7 @@ function AdminHeader(){
                 <header className='d-flex justify-content-evenly bg-dark text-white' >
                     <div className=' col-sm-2 align-self-center'>
                         <span className='p-2'>
-                        <Link to='/'>
+                        <Link to='/Admin/Products'>
                             <img src={logo} alt="Logo" width="200" height="55" />
                         </Link>
                         </span>

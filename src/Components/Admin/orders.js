@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Orders(){
-
-  const [orders, getorders] = useState([])
+  let jwttoken =sessionStorage.getItem('token');
+  const [orders, getorders] = useState([]);
 
   let userId =sessionStorage.getItem('userId');
   const usenavigate =useNavigate();
@@ -12,7 +12,10 @@ function Orders(){
   const deleteorder = (id) => {
     if(window.confirm("Do you want to delect order?")){
       fetch("https://localhost:7108/api/Orders/id?id=" + id,{
-        method:"Delete"
+        method:"Delete",
+        headers:{
+          'Authorization':'bearer ' + jwttoken,
+        }
       }).then(() => {
         window.location.reload();
       }).catch((err) => {
@@ -23,7 +26,11 @@ function Orders(){
   
 
   const getorderslist = () => {
-      fetch("https://localhost:7108/api/Orders/GetAllOrders")
+      fetch("https://localhost:7108/api/Orders/GetAllOrders", {
+        headers:{
+          'Authorization':'bearer ' + jwttoken,
+        }
+      })
       .then((res) => res.json())
       .then((res) => {
           getorders(res)
@@ -45,8 +52,8 @@ function Orders(){
               <thead className="bg-light ">
                 <tr>
                     <th>Order Id</th>
-                    <th>User Id</th>
-                    <th>Product Id</th>
+                    <th>User Name</th>
+                    <th>Product Names</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
                     <th>Action</th>
@@ -83,8 +90,8 @@ function Orders(){
                </td>
                <td>
                  <div>
-                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delect</button> <span> </span>
-                 <button type="button" className="btn btn-outline-success btn-rounded btn-sm" onClick={() => {getorderslist(order.users.id)}}>User Details</button>  <span> </span>
+                 <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delete</button> <span> </span>
+                 <button type="button" className="btn btn-outline-success btn-rounded btn-sm"  data-toggle="modal" data-target="#exampleModal" >User Details</button>  <span> </span>
                  <button type="button" className="btn btn-outline-primary btn-rounded btn-sm" onClick={() => {getorderslist(order.products)}}>Product Details</button>
                  </div>
                </td>
@@ -93,7 +100,11 @@ function Orders(){
          
          </tbody>
              </table>
-            </div>
+             
+            
+</div>
+
+            
     );
 }
 export default Orders;

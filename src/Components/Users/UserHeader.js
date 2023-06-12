@@ -5,7 +5,7 @@ import cart from "../Images/cart1.png";
 import medicine from "../Images/shop.png";
 import {Link} from 'react-router-dom';
 
-function UserHeader(){
+function UserHeader({cartItems}){
    
         return(
             <div  >
@@ -25,7 +25,7 @@ function UserHeader(){
                             <li className='p-2 nav-item'><Link to="/Users/Cart" className='nav-link text-white'><span><img src={cart} alt="home" width="30" height="29" />Cart</span></Link></li>
                         </ul>
                       
-                    </div>
+                    </div>     
                     <div className='col-sm-0 align-self-center'>
                     <button className="btn btn-warning my-2 my-sm-0" type="button"><Link to="/" className='nav-link text-white'><span>Logout</span></Link></button>
                    </div>
