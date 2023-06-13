@@ -46,6 +46,8 @@ function App() {
     <div className="App">
     
       <Routing addToCart={addToCart} setCartItems={setCartItems} cartItems ={cartItems} delectItem ={delectItem} removeItem={removeItem}></Routing>
+
+      
     </div>
   );
 }
