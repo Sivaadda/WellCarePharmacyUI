@@ -26,21 +26,6 @@ function Orders(){
     }
   }
 
-  const getorderbyId = (id) => {
-    
-      fetch("https://localhost:7108/api/Users/id?id=" + id,{
-        headers:{
-          'Authorization':'bearer ' + jwttoken,
-        }
-      }).then((res) => {
-         return res.json()
-      }).then((res) => {
-          console.log(res)
-          setgetuser(res)
-      }).catch((err) => {
-        console.log(err.message)
-      })
-    }
   
     const getproductbyId = (id) => {
     
@@ -51,9 +36,8 @@ function Orders(){
       }).then((res) => {
        return res.json()
       }).then((res) => {
-          console.log(res)
-          console.log(res.products)
           setgetproduct(res.products)
+          setgetuser(res.users)
       }).catch((err) => {
         console.log(err.message)
       })
@@ -128,7 +112,7 @@ function Orders(){
                <td>
                  <div>
                  <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteorder(order.id)}}>Delete</button> <span> </span>
-                 <button type="button" className="btn btn-outline-success btn-rounded btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {getorderbyId(order.users.id)}}>User Details</button>  <span> </span>
+                 <button type="button" className="btn btn-outline-success btn-rounded btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {getproductbyId(order.id)}}>User Details</button>  <span> </span>
                  <button type="button" className="btn btn-outline-primary btn-rounded btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => {getproductbyId(order.id)}}>Product Details</button>
                  </div>
                </td>
