@@ -1,5 +1,4 @@
 import { useState , useEffect} from "react";
-import Footer from "./Footer";
 import UserHeader from "./UserHeader";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -58,9 +57,8 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
     {
         usenavigate("/");
     }
-    
 
-}, [])
+}, [userId, usenavigate])
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     return(
         <div>
@@ -69,7 +67,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
              <table className=" container table align-middle mb-0 bg-white  ">
               <thead className="bg-light ">
                 <tr>
-                    <th>id</th>
+                    <th>Id</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Quantity</th>
@@ -103,7 +101,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
               </td>
               <td>
                 <div>
-                Rs {cartItem.quantity}*{cartItem.price}
+                Rs. {cartItem.quantity}*{cartItem.price}
                 </div>
               </td>
               <td>
@@ -119,7 +117,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
               <td > <div></div></td>
                 <td > <div></div></td>
                 <td > <div><b>Total Cost:</b></div></td>
-                <td > <div>Rs {Totalprice}</div></td>
+                <td > <div>Rs. {Totalprice}</div></td>
                 <td><div><button className="btn btn-warning" onClick={() => PlaceOrder()}>CheckOut</button></div></td>
               </tr>
               </tbody>

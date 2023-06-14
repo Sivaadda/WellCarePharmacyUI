@@ -58,12 +58,12 @@ function Orders(){
   }
   
   useEffect(() => {
-      getorderslist()
+    getorderslist()
       if(userId===''|| userId===null)
       {
           usenavigate("/");
       }
-  }, [])
+  }, [userId, usenavigate])
     return(
         <div>
             <AdminHeader/>
@@ -106,7 +106,7 @@ function Orders(){
                </td>
                <td>
                  <div>
-                  <p>{order.totalPrice}</p>
+                  <p>Rs. {order.totalPrice}</p>
                  </div>
                </td>
                <td>
@@ -185,7 +185,7 @@ function Orders(){
     <tr>
     <td>{pro.id}</td>
     <td>{pro.productName}</td>
-    <td>{pro.price}</td>
+    <td>Rs. {pro.price}</td>
     </tr>
     </tbody>
   );
