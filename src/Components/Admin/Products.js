@@ -45,6 +45,8 @@ function Products(){
                 setEditProduct(null);
                 toast.success(editProduct? "Product is updated": "Product is added");
                 getproductlist();
+                
+                
             
         })
           .catch((err) =>{
@@ -102,6 +104,20 @@ function Products(){
         updatestatus(product.status);
     };
 
+    function converToBase64(e){
+      console.log(e);
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload =() =>{
+        updateimage(reader.result);
+        
+      };
+      reader.onerror = error => {
+        console.log("Error:",error);
+      };
+      
+      }
+    
     return(
         <div>
             <AdminHeader/>
@@ -134,8 +150,8 @@ function Products(){
                           <input type="text" value={status} onChange={e=>updatestatus(e.target.value)}className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
                     <div className="form-outline flex-fill mb-0">
-                        <label className="form-label" >Image Url</label>
-                          <input type="text-area" value={imageUrl} onChange={e=>updateimage(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
+                        <label className="form-label" >Upload Image</label>
+                          <input type="file" accept="image/*"onChange={converToBase64} className="form-control bg-info p-2 text-dark bg-opacity-10" />
                     </div>
 
                     </div>
