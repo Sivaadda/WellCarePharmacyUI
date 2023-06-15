@@ -41,30 +41,31 @@ const Registration = () => {
                     <form className="mx-1 mx-md-4" onSubmit={handlesubmit}>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill mb-0">
-                        <label className="form-label" >Name</label>
-                          <input type="text" required value={name} onChange={e=>nameChange(e.target.value)} className="form-control" />
+                        <div className="form-outline flex-fill mb-0 input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                          <input type="text" required value={name} onChange={e=>nameChange(e.target.value)}  placeholder="Full Name"  className="form-control" />
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-row align-items mb-4 ">
+                        <div className="form-outline flex-fill mb-0 input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                          <input type="email" required value={email} onChange={e=>emailChange(e.target.value)}  placeholder="Email Address" className="form-control" />
+                        </div>
+                      </div>
+
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <div className="form-outline flex-fill mb-0 input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                          <input type="tel" value={phoneNumber} onChange={e=>phoneChange(e.target.value)}  placeholder="Phone Number"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill mb-0">
-                        <label className="form-label">Email Address</label>
-                          <input type="email" required value={email} onChange={e=>emailChange(e.target.value)} className="form-control" />
-                        </div>
-                      </div>
-
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill mb-0">
-                        <label className="form-label">Phone Number</label>
-                          <input type="tel" value={phoneNumber} onChange={e=>phoneChange(e.target.value)} className="form-control" />
-                        </div>
-                      </div>
-
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill mb-0">
-                        <label className="form-label">Password</label>
-                          <input type="password" required value={password} onChange={e=>passwordChange(e.target.value)} className="form-control" />
+                        <div className="form-outline flex-fill mb-0 input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                          <input type="password" required value={password} onChange={e=>passwordChange(e.target.value)}  placeholder="Password"  className="form-control" />
                         </div>
                       </div>
                       <div className="form-check d-flex justify-content-center mb-5">
