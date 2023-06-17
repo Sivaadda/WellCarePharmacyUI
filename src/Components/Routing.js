@@ -13,7 +13,7 @@ import Shop from "./Users/Shop.js";
 function Routing({addToCart,setCartItems, cartItems, delectItem, removeItem}){
     return(
         <div>
-            <ToastContainer theme="colored"></ToastContainer>
+            <ToastContainer theme="colored" position='top-center'></ToastContainer>
             <BrowserRouter>
             <Routes>
                 <Route path ="/" element={<Login/>}></Route> 

@@ -11,29 +11,27 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
   const userId = sessionStorage.getItem('userId');
   let jwttoken =sessionStorage.getItem('token');
   const totalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
-
   const usenavigate=useNavigate();
   
   const [orderData, setOrderData] = useState({
-    quantity: 0,
+    totalQuantity: 0,
     totalPrice: 0,
     usersId: 0,
-    products: [
-
-    ]
+    products: []
   });
   
   const PlaceOrder = () => {
     // Update the orderData state with the required values
     setOrderData({
-      quantity: totalQuantity,
+      totalQuantity: totalQuantity,
       totalPrice: Totalprice,
-      usersId: userId ,
+       usersId: userId ,
       products: cartItems.map(cartItem => ({
-        productId: cartItem.id
+        productId: cartItem.id,
+        quantity:cartItem.quantity
       }))
     });
-
+    
     // Send the POST request to the server
     fetch("https://localhost:7108/api/Orders/AddOrder", {
       method: "POST",
@@ -51,8 +49,9 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
       toast.success("Order is placed successfully");  
       setCartItems([]);      
       })
-   
+    
   };
+
 
   useEffect(() => {
 
