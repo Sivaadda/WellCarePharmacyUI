@@ -8,12 +8,49 @@ const Registration = () => {
   const [phoneNumber, phoneChange] =useState("");
   const [password, passwordChange] =useState("");
 
+  const IsValidate = () => {
+    let isproceed = true;
+    let errormessage = 'Please enter the value in ';
+    
+    if (name === null || name === '') {
+        isproceed = false;
+        errormessage += ' Fullname';
+    }
+    if (password === null || password === '') {
+        isproceed = false;
+        errormessage += ' Password';
+    }
+    if (email === null || email === '') {
+        isproceed = false;
+        errormessage += ' Email';
+    }
+    if(phoneNumber===null || phoneNumber ===''){
+      isproceed =false;
+      errormessage += 'Phone Number'
+    }
+    if(phoneNumber.length==!10){
+      isproceed =false;
+     toast.error("Phone Number is not a valid number")
+    }
+
+    if(!isproceed){
+        toast.warning(errormessage)
+    }else{
+        if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
+
+        }else{
+            isproceed = false;
+            toast.warning('Please enter the valid email')
+        }
+    }
+    return isproceed;
+}
   const navigate = useNavigate();
   const handlesubmit=(e) =>{
     e.preventDefault();
     let regobj = {name,email,phoneNumber,password};
     console.log(regobj);
-
+    if (IsValidate()) {
     fetch("https://localhost:7108/api/AuthUsers/Registration", {
       method:"POST",
       headers:{'content-type':'application/json'},
@@ -24,7 +61,7 @@ const Registration = () => {
     }).catch((err)=>{
         toast.error("Failed: " +err.messsage);
     });
-
+  }
   }
   return (
     <section className="vh-100" style={{ backgroundColor: '#fff' }}>
@@ -43,14 +80,14 @@ const Registration = () => {
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
-                          <input type="text" required value={name} onChange={e=>nameChange(e.target.value)}  placeholder="Full Name"  className="form-control" />
+                          <input type="text" value={name} onChange={e=>nameChange(e.target.value)}  placeholder="Full Name"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items mb-4 ">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
-                          <input type="email" required value={email} onChange={e=>emailChange(e.target.value)}  placeholder="Email Address" className="form-control" />
+                          <input type="email" value={email} onChange={e=>emailChange(e.target.value)}  placeholder="Email Address" className="form-control" />
                         </div>
                       </div>
 
@@ -65,7 +102,7 @@ const Registration = () => {
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><img src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
-                          <input type="password" required value={password} onChange={e=>passwordChange(e.target.value)}  placeholder="Password"  className="form-control" />
+                          <input type="password"value={password} onChange={e=>passwordChange(e.target.value)}  placeholder="Password"  className="form-control" />
                         </div>
                       </div>
                       <div className="form-check d-flex justify-content-center mb-5">
