@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import validator from 'validator';
 
 const Registration = () => {
   const [name, nameChange] =useState("");
@@ -8,49 +9,47 @@ const Registration = () => {
   const [phoneNumber, phoneChange] =useState("");
   const [password, passwordChange] =useState("");
 
-  const IsValidate = () => {
-    let isproceed = true;
-    let errormessage = 'Please enter the value in ';
-    
-    if (name === null || name === '') {
-        isproceed = false;
-        errormessage += ' Fullname';
+  const validate = () => {
+    let isValid = true;
+  
+    if (name.trim() === '') {
+      isValid = false;
+      toast.warning('Please enter your full name.');
     }
-    if (password === null || password === '') {
-        isproceed = false;
-        errormessage += ' Password';
+  
+    if (email.trim() === '') {
+      isValid = false;
+      toast.warning('Please enter your email address.');
+    } else if (!validator.isEmail(email)) {
+      isValid = false;
+      toast.warning('Please enter a valid email address.');
     }
-    if (email === null || email === '') {
-        isproceed = false;
-        errormessage += ' Email';
+  
+    if (phoneNumber.trim() === '') {
+      isValid = false;
+      toast.warning('Please enter your phone number.');
+    } else if (!validator.isLength(phoneNumber, { max: 10, min:10})) {
+      isValid = false;
+      toast.warning('Phone number should be 10 characters.');
     }
-    if(phoneNumber===null || phoneNumber ===''){
-      isproceed =false;
-      errormessage += 'Phone Number'
+  
+    if (password.trim() === '') {
+      isValid = false;
+      toast.warning('Please enter a password.');
+    } else if (!validator.isLength(password, { max: 20, min:8 })) {
+      isValid = false;
+      toast.warning('Password should be above 8 and not exceed 20  characters.');
     }
-    if(phoneNumber.length==!10){
-      isproceed =false;
-     toast.error("Phone Number is not a valid number")
-    }
-
-    if(!isproceed){
-        toast.warning(errormessage)
-    }else{
-        if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
-
-        }else{
-            isproceed = false;
-            toast.warning('Please enter the valid email')
-        }
-    }
-    return isproceed;
-}
+  
+    return isValid;
+  };
+  
   const navigate = useNavigate();
   const handlesubmit=(e) =>{
     e.preventDefault();
     let regobj = {name,email,phoneNumber,password};
     console.log(regobj);
-    if (IsValidate()) {
+    if (validate()) {
     fetch("https://localhost:7108/api/AuthUsers/Registration", {
       method:"POST",
       headers:{'content-type':'application/json'},
@@ -64,7 +63,7 @@ const Registration = () => {
   }
   }
   return (
-    <section className="vh-100" style={{ backgroundColor: '#fff' }}>
+    <section className="vh-100" style={{ backgroundImage :"url('https://tse2.mm.bing.net/th?id=OIP.GEWMTfi9XIPVcqUZ3KAEJQHaHa&pid=Api&P=0&h=180')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
@@ -79,14 +78,14 @@ const Registration = () => {
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="text" value={name} onChange={e=>nameChange(e.target.value)}  placeholder="Full Name"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items mb-4 ">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="email" value={email} onChange={e=>emailChange(e.target.value)}  placeholder="Email Address" className="form-control" />
                         </div>
                       </div>
@@ -94,14 +93,14 @@ const Registration = () => {
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="tel" value={phoneNumber} onChange={e=>phoneChange(e.target.value)}  placeholder="Phone Number"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><img src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="password"value={password} onChange={e=>passwordChange(e.target.value)}  placeholder="Password"  className="form-control" />
                         </div>
                       </div>

@@ -4,7 +4,10 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
-  const Totalprice = cartItems.reduce((price,cart) => price+ cart.quantity * cart.price,0 );
+  const Totalprice = cartItems.reduce(
+    (total, cartItem) => total + cartItem.quantity * (cartItem.price - cartItem.discount),
+    0
+  );
   const userId = sessionStorage.getItem('userId');
   let jwttoken =sessionStorage.getItem('token');
   const totalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
@@ -16,9 +19,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
     totalPrice: 0,
     usersId: 0,
     products: [
-      {
-        productId: 0
-      }
+
     ]
   });
   
@@ -42,7 +43,9 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
       },
       body: JSON.stringify(orderData)
     })
-    .then(response =>{ return response.json()
+    .then(response =>{ 
+
+      return response.json()
     })
     .then(data => {
       toast.success("Order is placed successfully");  
@@ -70,14 +73,20 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
                     <th>Id</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>Price</th>
                     <th>Quantity</th>
                     <th>SubTotal</th>
                     <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-          {cartItems.map((cartItem) => (
-            <tr key={cartItem.id}>
+          {cartItems.map((cartItem) => {
+             
+             const discountedPrice = cartItem.price - cartItem.discount;
+            
+            return(
+              
+                 <tr key={cartItem.id}>
               <td>
                 <div>
                  <p>{cartItem.id}</p>
@@ -95,13 +104,19 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
               </td>
               <td>
                 <div>
+                  <p> Rs. {discountedPrice}</p>
+                </div>
+              </td>
+              <td>
+                <div>
                 <button type="button" className="btn  btn-rounded" onClick={()=>{addToCart(cartItem)}}>+</button>
+                {cartItem.quantity}
                 <button type="button" className="btn  btn-rounded" onClick={()=>{removeItem(cartItem)}}>-</button>
                 </div>
               </td>
               <td>
                 <div>
-                Rs. {cartItem.quantity}*{cartItem.price}
+                Rs. {cartItem.quantity * discountedPrice}
                 </div>
               </td>
               <td>
@@ -110,7 +125,11 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
                 </div>
               </td>
             </tr>
-          ))}
+          
+            );
+             } )}
+            
+           
        
               <tr className="justify-content-end">
               

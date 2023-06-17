@@ -31,21 +31,24 @@ const Login = () => {
           if (Object.keys(resp).length === 0) {
             toast.error('Login failed, invalid credentials');
           } else {
-            toast.success('Success');
             sessionStorage.setItem('email', email);
             sessionStorage.setItem('token', resp.token);
             sessionStorage.setItem('roleId', resp.roleid);
             sessionStorage.setItem('userId', resp.userid);
             if (resp.roleid === 2) {
               navigate("/Users/Home");
-            } else {
+              toast.success('Success');
+            } else if(resp.roleid === 1) {
               navigate("/Admin/Products");
+              toast.success('Success');
+            } else{
+              toast.error("Inavalid Cradentials")
             }
           }
-          setIsSubmitting(false);
+         
         })
         .catch((err) => {
-          toast.error('Login Failed due to: ' + err.message);
+          toast.error('Login Failed due to Invalid Credentials');
           setIsSubmitting(false);
         });
     }
@@ -68,7 +71,7 @@ const Login = () => {
   };
 
   return (
-    <section className="vh-100" style={{ backgroundColor: '#fff' }}>
+    <section className="vh-100" style={{ backgroundImage: "Url('https://tse2.mm.bing.net/th?id=OIP.Lj8JCkZzwowku6bFAQfiZwHaHa&pid=Api&P=0&h=180')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
