@@ -6,7 +6,7 @@ function Orders(){
   let jwttoken =sessionStorage.getItem('token');
   const [orders, getorders] = useState([]);
   const [getuser, setgetuser] = useState([]);
-  const [getproduct, setgetproduct] = useState([]);
+  const [product, getproducts] = useState([])
 
   let userId =sessionStorage.getItem('userId');
   const usenavigate =useNavigate();
@@ -36,13 +36,18 @@ function Orders(){
       }).then((res) => {
        return res.json()
       }).then((res) => {
-          setgetproduct(res.products)
+        
           setgetuser(res.users)
+          getproducts(res.productOrders);
+          
+          
+         
       }).catch((err) => {
         console.log(err.message)
       })
     }
   
+   
 
   const getorderslist = () => {
       fetch("https://localhost:7108/api/Orders/GetAllOrders", {
@@ -73,7 +78,6 @@ function Orders(){
                 <tr>
                     <th>Order Id</th>
                     <th>User Name</th>
-                    <th>Product Names</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
                     <th>Action</th>
@@ -93,17 +97,13 @@ function Orders(){
                     <p>{order.users.name}</p>
                  </div>
                </td>
-               <td>
-                 <div >
-                      <div>{order.products.map((product) => { return (<div key={product.id}>{product.productName}</div>)})}</div>
-                 </div>
-               </td>
                
                <td>
                  <div>
-                  <p>{order.quantity}</p>
+                  <p>{order.totalQuantity}</p>
                  </div>
                </td>
+               
                <td>
                  <div>
                   <p>Rs. {order.totalPrice}</p>
@@ -165,31 +165,39 @@ function Orders(){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">User Details</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Products Details</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Id</th>
+      <th scope="col">S.No</th>
       <th scope="col">Product Name</th>
       <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+
+     
    
     </tr>
   </thead>
   
-  {getproduct.map((pro) => {
-  return(
-    <tbody>
-    <tr>
-    <td>{pro.id}</td>
-    <td>{pro.productName}</td>
-    <td>Rs. {pro.price}</td>
-    </tr>
+  {product.map((p) => {return(
+     
+      <tbody>
+          <tr key={p.productId}>
+          <td>{p.productId}</td>
+          <td>{p.product.productName}</td>
+          <td>{p.product.price}</td>
+
+<td>{p.quantity}</td>
+</tr>
     </tbody>
-  );
-})}
+
+    
+  );})}
+   
+   
     
   
 </table>
