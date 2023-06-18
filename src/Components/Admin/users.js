@@ -1,7 +1,9 @@
 import AdminHeader from "./AdminHeader";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useTokenExpiration from "../TokenExpireLogic";
 function Users(){
+  useTokenExpiration();
 
     let jwttoken =sessionStorage.getItem('token');
     const [users, getusers] = useState([]);

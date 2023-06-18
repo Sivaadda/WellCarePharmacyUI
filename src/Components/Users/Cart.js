@@ -2,8 +2,9 @@ import { useState , useEffect} from "react";
 import UserHeader from "./UserHeader";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import useTokenExpiration from "../TokenExpireLogic";
 function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
+  useTokenExpiration();
   const Totalprice = cartItems.reduce(
     (total, cartItem) => total + cartItem.quantity * (cartItem.price - cartItem.discount),
     0

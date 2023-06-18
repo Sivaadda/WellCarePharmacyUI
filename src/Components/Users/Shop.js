@@ -3,7 +3,9 @@ import Footer from "./Footer";
 import UserHeader from "./UserHeader";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import useTokenExpiration from "../TokenExpireLogic";
 function Shop({addToCart}){
+  useTokenExpiration();
     const [products, getproducts] = useState([])
     const [product,getproduct] = useState([])
     const discountPercentage = (product.discount / product.price) * 100;

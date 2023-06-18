@@ -35,6 +35,7 @@ const Login = () => {
             sessionStorage.setItem('token', resp.token);
             sessionStorage.setItem('roleId', resp.roleid);
             sessionStorage.setItem('userId', resp.userid);
+            sessionStorage.setItem('expires', resp.expires);
             if (resp.roleid === 2) {
               navigate("/Users/Home");
               toast.success('Success');

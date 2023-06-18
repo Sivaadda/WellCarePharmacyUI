@@ -2,8 +2,10 @@ import AdminHeader from "./AdminHeader";
 import React, { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import useTokenExpiration from "../TokenExpireLogic";
 
 function Products(){
+  useTokenExpiration();
 
     const [products, getproducts] = useState([])
     const [productName, updatename] = useState("")
