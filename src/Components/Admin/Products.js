@@ -130,7 +130,7 @@ function Products(){
             <p></p>
             <h3>Add/Update Product</h3>
           <div className="row">
-            <div className="mx-auto col-7 ">
+            <div className="mx-auto col-9 ">
             <form onSubmit={addproduct}  style={{width: "75rem"}} >
                 <div className="row col-sm-12 justify-content-center">
                     <div className="col-sm-6">
@@ -151,9 +151,9 @@ function Products(){
                     </div>
                     <div className="col-sm-6">
                     <div className="form-outline flex-fill mb-3 input-group mt-4">
-                    <span className="input-group-text">Discount</span>
+                    <span className="input-group-text">Discount Amount</span>
                           <input type="texdecimal" value={discount} onChange={e=>updatediscount(e.target.value)} className="form-control bg-info p-2 text-dark bg-opacity-10" />
-                          <span className="input-group-text">%</span>
+                          <span className="input-group-text">.00</span>
                     </div>
                     <div className="form-outline flex-fill mb-3 input-group mb-3">
                     <span className="input-group-text">Status</span>
@@ -193,7 +193,7 @@ function Products(){
                     </div>
                     <ul className="navbar-nav">
                         <li className="nav-link p-0" ><b>Price:</b> Rs. {discountedPrice}  <sup> <del>  Rs.{product.price} </del> </sup></li>
-                        <li class="card-text"><b>Discount:</b> {discountPercentage.toFixed(0)}% off</li>
+                        <li className="card-text"><b>Discount:</b> {discountPercentage.toFixed(0)}% off</li>
                         <li className="nav-link" >{product.status}</li>
                         <li className="nav-link" >{product.descripition}</li>
                     </ul>
