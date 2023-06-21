@@ -24,6 +24,7 @@ function Orders(){
         window.location.reload();
       }).catch((err) => {
         console.log(err.message)
+        usenavigate("/500Servererror");
       })
     }
   }
@@ -46,6 +47,7 @@ function Orders(){
          
       }).catch((err) => {
         console.log(err.message)
+        usenavigate("/500Servererror");
       })
     }
   
@@ -61,6 +63,9 @@ function Orders(){
       .then((res) => {
           getorders(res)
           console.log(res)
+      }).catch((err) => {
+        console.log(err.message)
+        usenavigate("/500Servererror");
       })
   }
   

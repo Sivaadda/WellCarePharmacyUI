@@ -21,6 +21,7 @@ function Users(){
           window.location.reload();
         }).catch((err) => {
           console.log(err.message)
+          usenavigate("/500Servererror");
         })
       }
     }
@@ -48,6 +49,7 @@ function Users(){
             getusers(res)
         }).catch((error) => {
           console.log(error.message)
+          usenavigate("/500Servererror");
         });
 
        

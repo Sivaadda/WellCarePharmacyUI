@@ -8,6 +8,8 @@ import Products from "./Admin/Products.js";
 import Users from "./Admin/users.js";
 import Cart from "./Users/Cart.js";
 import Shop from "./Users/Shop.js";
+import NotFound from "./ErrorPages/NotFound.js";
+import ServerPage from "./ErrorPages/ServerPage.js";
 
 
 function Routing({addToCart,setCartItems, cartItems, delectItem, removeItem}){
@@ -26,6 +28,8 @@ function Routing({addToCart,setCartItems, cartItems, delectItem, removeItem}){
                 <Route path="/Users/Home" element={<Home/>}></Route>
                 <Route path="/Users/Cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} delectItem ={delectItem} removeItem={removeItem}/>}></Route>
                 <Route path="/Users/Shop" element={<Shop addToCart={addToCart}/>}></Route>
+                <Route path= "*" element={<NotFound/>}></Route>
+                <Route path="/500Servererror" element={<ServerPage/>}></Route>
                 
                 
             </Routes>

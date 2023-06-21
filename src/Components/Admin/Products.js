@@ -85,6 +85,9 @@ function Products(){
         .then((res) => {
             console.log(res)
             getproducts(res)
+        }).catch((err) =>{
+          console.log(err)
+          usenavigate("/500Servererror");
         })
     }
     

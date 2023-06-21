@@ -28,8 +28,8 @@ function Shop({addToCart}){
             getproducts(inStockProducts);
             console.log(res);
         }).catch((err) =>{
-       
             console.log(err.message);
+            usenavigate("/500Servererror");
             
     })
 }
