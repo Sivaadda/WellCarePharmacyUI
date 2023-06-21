@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useTokenExpiration from "../TokenExpireLogic";
 function Users(){
   useTokenExpiration();
+  
 
     let jwttoken =sessionStorage.getItem('token');
     const [users, getusers] = useState([]);
@@ -24,6 +25,10 @@ function Users(){
       }
     }
     
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      return date.toLocaleDateString(); // Change the date format as needed
+    };
     useEffect(() => {
 
       if(userId===''|| userId===null)
@@ -97,9 +102,9 @@ function Users(){
                  <p>{user.password}</p>
                  </div>
                </td>
-               <td>
+               <td>    
                  <div>
-                  <p>{user.registeredOn}</p>
+                  <p>{formatDate (user.registeredOn)}</p>
                  </div>
                </td>
                <td>
