@@ -127,12 +127,6 @@ const getproductbyId = (id) => {
   </div>
 </div>
           
-
-
-
-            
-            <Footer/>
-            
         </div>              
     );
 }

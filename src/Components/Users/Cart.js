@@ -70,7 +70,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
              <table className=" container table align-middle mb-0 bg-white  ">
               <thead className="bg-light ">
                 <tr>
-                    <th>Id</th>
+                    
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
@@ -87,11 +87,7 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
             return(
               
                  <tr key={cartItem.id}>
-              <td>
-                <div>
-                 <p>{cartItem.id}</p>
-                </div>
-              </td>
+             
               <td>
                 <div>
                   <img src={cartItem.imageUrl} alt={cartItem.productName} width="80" height="80" />

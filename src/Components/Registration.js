@@ -63,7 +63,7 @@ const Registration = () => {
   }
   }
   return (
-    <section className="vh-100" style={{ backgroundImage :"url('https://tse2.mm.bing.net/th?id=OIP.GEWMTfi9XIPVcqUZ3KAEJQHaHa&pid=Api&P=0&h=180')" }}>
+    <section className="vh-100" style={{ backgroundImage :"url('https://tse2.mm.bing.net/th?id=OIP.Lj8JCkZzwowku6bFAQfiZwHaHa&pid=Api&P=0&h=180')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
