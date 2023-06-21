@@ -180,6 +180,7 @@ function Products(){
             {products.map((product) => {
                const discountPercentage = (product.discount / product.price) * 100;
                const discountedPrice = product.price - product.discount;
+               const cardClass = product.status === 'InStock' ? 'badge text-bg-success' : 'badge text-bg-danger';
                 return(
                 
             <div className="d-inline-flex card mt-5 m-2 shadow" key={product.id} style={{width: "15rem", height:"27rem"}} >
@@ -188,19 +189,19 @@ function Products(){
                 </div> 
                 <div  className="card-body">
                     <div  className="card-title">
-                        <p> <b>Id:</b> {product.id}</p>
-                        <p className="">{product.productName}</p>
+                       
+                        <p className=""><b>{product.productName}</b></p>
                     </div>
                     <ul className="navbar-nav">
                         <li className="nav-link p-0" ><b>Price:</b> Rs. {discountedPrice}  <sup> <del>  Rs.{product.price} </del> </sup></li>
                         <li className="card-text"><b>Discount:</b> {discountPercentage.toFixed(0)}% off</li>
-                        <li className="nav-link" >{product.status}</li>
+                      <div width={50}>  <li className={`nav-link ${cardClass}`}>{product.status}</li></div> 
                         <li className="nav-link" >{product.descripition}</li>
                     </ul>
                     <div>
                       
-                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" onClick={() => {handleEdit(product)}}>Edit</button>
-                        <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}>Delete</button>
+                        <button type="button" className="btn btn-outline-warning mx-1 btn-rounded btn-sm" onClick={() => {handleEdit(product)}}><b>Update</b></button>
+                        <button type="button" className="btn btn-outline-danger btn-rounded btn-sm" onClick={() => {deleteproduct(product.id)}}><b>Delete</b></button>
                     </div>
                 </div>
             </div> 

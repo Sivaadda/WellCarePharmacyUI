@@ -2,6 +2,7 @@ import { useState , useEffect} from "react";
 import UserHeader from "./UserHeader";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 import useTokenExpiration from "../TokenExpireLogic";
 function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
   useTokenExpiration();
@@ -66,7 +67,14 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
     return(
         <div>
           <UserHeader/>
-          <h1>Cart Items</h1>
+          
+          {cartItems.length === 0 ? 
+          <div>
+            <h3 className="m-4 text-warning">Cart is Empty</h3>
+          <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png"/>
+          <Footer/>
+          </div>:
+          <div> <h1>Cart Items</h1>
              <table className=" container table align-middle mb-0 bg-white  ">
               <thead className="bg-light ">
                 <tr>
@@ -136,9 +144,11 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
                 <td><div><button className="btn btn-warning" onClick={() => PlaceOrder()}>CheckOut</button></div></td>
               </tr>
               </tbody>
-             </table>   
-          
+             </table>
+             </div>   
+          }
         </div>
+      
       );
    }
 export default Cart;

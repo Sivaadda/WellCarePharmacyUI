@@ -80,7 +80,7 @@ function Orders(){
                 <tr>
                     <th>Order Id</th>
                     <th>User Name</th>
-                    <th>Quantity</th>
+                    <th>Total Quantity</th>
                     <th>Total Price</th>
                     <th>Action</th>
                 </tr>

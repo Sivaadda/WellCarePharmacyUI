@@ -114,7 +114,6 @@ const getproductbyId = (id) => {
         <p class="card-text"><b>Price:</b> Rs. {product.price}</p>
         <p class="card-text"><b>Discount:</b> Rs. {product.discount} ({discountPercentage.toFixed(2)}% off)</p>
           <p class="card-text"><b>Discounted Price:</b> Rs. {discountedPrice}</p>
-        <p class="card-text"><b>Status</b> {product.status}</p>
       </div>
     </div>
   </div>

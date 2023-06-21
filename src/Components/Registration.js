@@ -94,7 +94,7 @@ const Registration = () => {
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
                         <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
-                          <input type="tel" value={phoneNumber} onChange={e=>phoneChange(e.target.value)}  placeholder="Phone Number"  className="form-control" />
+                          <input type="tel" value={phoneNumber} pattern="[0-9]{10}" onChange={e=>phoneChange(e.target.value)}  placeholder="Phone Number"  className="form-control" />
                         </div>
                       </div>
 
