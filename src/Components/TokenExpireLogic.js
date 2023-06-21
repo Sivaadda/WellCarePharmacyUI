@@ -18,7 +18,7 @@ const useTokenExpiration = () => {
   useEffect(() => {
     if (isTokenExpired()) {
       navigate("/"); // Redirect to the login page
-      toast.error("Token has expired. Please log in again.");
+      toast.error("Please log in again.");
     }
   }, []);
 }

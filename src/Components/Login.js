@@ -72,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <section className="vh-100" style={{ backgroundImage: "Url('https://tse2.mm.bing.net/th?id=OIP.Lj8JCkZzwowku6bFAQfiZwHaHa&pid=Api&P=0&h=180')" }}>
+    <section className="vh-100" style={{ backgroundImage: "Url('http://getwallpapers.com/wallpaper/full/8/9/2/1520340-amazing-medical-wallpaper-backgrounds-1920x1200.jpg')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
