@@ -55,10 +55,20 @@ const Registration = () => {
       headers:{'content-type':'application/json'},
       body:JSON.stringify(regobj)
     }).then((res)=>{
+      if(res.ok)
+      {
         toast.success("Registered successfully.")
         navigate("/");
+      }else if (res.status === 409)
+      {
+        toast.error("Email already exists. Please use a different email");
+      }
+      else{
+        toast.error("Registered failed.");
+      }
+       
     }).catch((err)=>{
-        toast.error("Failed: " +err.messsage);
+      navigate("/500Servererror");
     });
   }
   }

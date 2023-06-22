@@ -50,8 +50,8 @@ const Login = () => {
          
         })
         .catch((err) => {
-          toast.error('Login Failed due to Invalid Credentials');
           setIsSubmitting(false);
+          navigate("/500Servererror");
         });
     }
   };

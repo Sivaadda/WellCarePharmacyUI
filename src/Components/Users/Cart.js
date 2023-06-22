@@ -47,13 +47,15 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
 
       return response.json()
     })
-    .then(data => {
-      toast.success("Order is placed successfully");  
+    .then(respond => {
+      console.log(respond);
+      toast.success("Order is placed successfully. Your Order Id is : " + respond.id );  
       setCartItems([]);      
       })
     
   };
 
+  
 
   useEffect(() => {
 
@@ -132,11 +134,8 @@ function Cart({ cartItems, delectItem, removeItem , addToCart,setCartItems}){
           
             );
              } )}
-            
-           
-       
+
               <tr className="justify-content-end">
-              
               <td > <div></div></td>
                 <td > <div></div></td>
                 <td > <div><b>Total Cost:</b></div></td>
