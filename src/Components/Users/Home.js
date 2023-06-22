@@ -15,8 +15,6 @@ function Home() {
         usenavigate("/");
         
     }
-    
-
 }, [])
 
     return(

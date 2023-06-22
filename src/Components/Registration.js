@@ -63,7 +63,7 @@ const Registration = () => {
   }
   }
   return (
-    <section className="vh-100" style={{ backgroundImage :"url('http://getwallpapers.com/wallpaper/full/8/9/2/1520340-amazing-medical-wallpaper-backgrounds-1920x1200.jpg')" }}>
+    <section className="vh-100" style={{ backgroundImage :"url('https://hrharvestride.com/wp-content/uploads/2019/01/medical-background-with-loop_n26ve-_yg__f0005-medical.jpg')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
@@ -78,14 +78,14 @@ const Registration = () => {
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img alt="usericon" src= "https://tse4.mm.bing.net/th?id=OIP.bu3vuymRYBLWGMSR-pGtlAHaHa&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="text" value={name} onChange={e=>nameChange(e.target.value)}  placeholder="Full Name"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items mb-4 ">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img alt="emailicon" src= "https://tse4.mm.bing.net/th?id=OIP.lL-Y1iwd-JCwQMCt2DnESwHaH2&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="email" value={email} onChange={e=>emailChange(e.target.value)}  placeholder="Email Address" className="form-control" />
                         </div>
                       </div>
@@ -93,14 +93,14 @@ const Registration = () => {
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img alt="phoneicon" src= "https://tse4.mm.bing.net/th?id=OIP.i82JBZUtdkCVKGVI0408bwHaHb&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="tel" value={phoneNumber} pattern="[0-9]{10}" onChange={e=>phoneChange(e.target.value)}  placeholder="Phone Number"  className="form-control" />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0 input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1"><img src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
+                        <span className="input-group-text" id="basic-addon1"><img alt="passwordicon" src= "https://tse3.mm.bing.net/th?id=OIP.Ny8dqSPZjv_iCq46P4dWOQHaId&pid=Api&P=0&h=180" height={20} width={20}></img></span>
                           <input type="password"value={password} onChange={e=>passwordChange(e.target.value)}  placeholder="Password"  className="form-control" />
                         </div>
                       </div>

@@ -21,7 +21,7 @@ function Orders(){
           'Authorization':'bearer ' + jwttoken,
         }
       }).then(() => {
-        window.location.reload();
+        getorderslist();
       }).catch((err) => {
         console.log(err.message)
         usenavigate("/500Servererror");
@@ -29,9 +29,7 @@ function Orders(){
     }
   }
 
-  
     const getproductbyId = (id) => {
-    
       fetch("https://localhost:7108/api/Orders/id?id=" + id,{
         headers:{
           'Authorization':'bearer ' + jwttoken,
@@ -39,20 +37,14 @@ function Orders(){
       }).then((res) => {
        return res.json()
       }).then((res) => {
-        
           setgetuser(res.users)
-          getproducts(res.productOrders);
-          
-          
-         
+          getproducts(res.productOrders);      
       }).catch((err) => {
         console.log(err.message)
         usenavigate("/500Servererror");
       })
     }
   
-   
-
   const getorderslist = () => {
       fetch("https://localhost:7108/api/Orders/GetAllOrders", {
         headers:{

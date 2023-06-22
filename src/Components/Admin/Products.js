@@ -186,7 +186,7 @@ function Products(){
                const cardClass = product.status === 'InStock' ? 'badge text-bg-success' : 'badge text-bg-danger';
                 return(
                 
-            <div className="d-inline-flex card mt-5 m-2 shadow" key={product.id} style={{width: "15rem", height:"27rem"}} >
+            <div className="d-inline-flex card mt-5 m-2 shadow" key={product.id} style={{width: "15rem", height:"24rem"}} >
                 <div  >
                     <img src={product.imageUrl} alt="product " width="100" height="100"/>
                 </div> 

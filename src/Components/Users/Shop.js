@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Footer from "./Footer";
 import UserHeader from "./UserHeader";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -81,7 +80,7 @@ const getproductbyId = (id) => {
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item"><b>Price:</b> Rs. {discountedPrice}  <sup> <del>  Rs.{product.price} </del> </sup></li>
-                      <li class="list-group-item"><b>Discount:</b> {discountPercentage.toFixed(1)}% off</li>
+                      <li class="list-group-item"><b>Discount:</b> {discountPercentage.toFixed(0)}% off</li>
                     </ul>
                     <div class="card-body">
                     <button type="button" className="btn btn-outline-info btn-rounded btn-sm" onClick={() => addToCart( product )}
@@ -90,9 +89,6 @@ const getproductbyId = (id) => {
                   </div>
                   </div>
             )})}
-
-
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -112,7 +108,7 @@ const getproductbyId = (id) => {
         
     <p   style={{width: "18rem"}} class="card-text text-center">{product.descripition}</p>
         <p class="card-text"><b>Price:</b> Rs. {product.price}</p>
-        <p class="card-text"><b>Discount:</b> Rs. {product.discount} ({discountPercentage.toFixed(2)}% off)</p>
+        <p class="card-text"><b>Discount:</b> Rs. {product.discount} ({discountPercentage.toFixed(0)}% off)</p>
           <p class="card-text"><b>Discounted Price:</b> Rs. {discountedPrice}</p>
       </div>
     </div>

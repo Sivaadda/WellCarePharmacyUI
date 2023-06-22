@@ -7,7 +7,7 @@ function NotFound(){
            };
     return(
         <div>
-           <div><img src="https://onlinezebra.com/wp-content/uploads/2019/01/error-404-not-found.jpg" width={1000} height={750}></img></div> 
+           <div><img src="https://onlinezebra.com/wp-content/uploads/2019/01/error-404-not-found.jpg" width={1000} height={650} alt="notfound"></img></div> 
             <button type="submit" className="btn btn-primary" onClick={goBack}>Return to Login Page</button>
         </div>
     );

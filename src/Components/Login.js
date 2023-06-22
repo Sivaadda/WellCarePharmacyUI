@@ -44,6 +44,7 @@ const Login = () => {
               toast.success('Success');
             } else{
               toast.error("Inavalid Cradentials")
+              setIsSubmitting(false);
             }
           }
          
@@ -72,7 +73,7 @@ const Login = () => {
   };
 
   return (
-    <section className="vh-100" style={{ backgroundImage: "Url('http://getwallpapers.com/wallpaper/full/8/9/2/1520340-amazing-medical-wallpaper-backgrounds-1920x1200.jpg')" }}>
+    <section className="vh-100" style={{ backgroundImage: "Url('https://hrharvestride.com/wp-content/uploads/2019/01/medical-background-with-loop_n26ve-_yg__f0005-medical.jpg')" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">

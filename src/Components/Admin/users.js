@@ -10,6 +10,7 @@ function Users(){
     const [users, getusers] = useState([]);
     const usenavigate=useNavigate();
     const userId = sessionStorage.getItem('userId');
+    
     const deleteuser = (id) => {
       if(window.confirm("Do you want to delect user?")){
         fetch("https://localhost:7108/api/Users/id?id=" + id,{
